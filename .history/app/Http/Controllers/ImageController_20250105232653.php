@@ -26,6 +26,7 @@ class ImageController extends Controller
         // Lưu file vào thư mục storage/app/public/images
         // $path = $request->file('image')->store('images', 'public');
 
+
         // Lưu file vào thư mục storage/app/public/images
         $uploadedImages = [];
 
@@ -57,7 +58,7 @@ class ImageController extends Controller
     public function show($filename)
     {
         // Trả về file hình ảnh theo tên
-        $path = storage_path('app/public/images/' . $filename);
+        $path = storage_path('app/public/images' . $filename);
 
         if (!file_exists($path)) {
             return response()->json(['message' => 'File not found'], 404);

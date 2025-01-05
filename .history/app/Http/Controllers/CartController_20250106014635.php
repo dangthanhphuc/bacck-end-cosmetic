@@ -92,7 +92,7 @@ class CartController extends Controller
 
         try {
             foreach ($request->carts as $cart) {
-                $cartFind = Cart::find([$cart['user_id'], $cart['product_id'] ]);
+                $cartFind = Cart::find([$cart->user_id, $cart->product_id ]);
                 $cartFind->update([
                     'quantity' => $cart['quantity']
                 ]);

@@ -106,7 +106,7 @@ Route::group([
 ], function($router) {
     Route::get('/', [ProductController::class, 'products'])->withoutMiddleware('role:admin');
     Route::get('/{id}', [ProductController::class,'productById'])->withoutMiddleware('role:admin');
-    Route::get('/search', [ProductController::class, 'search'])->withoutMiddleware('role:admin');
+    Route::get('/search', [ProductController::class, 'searche'])->withoutMiddleware('role:admin');
     Route::post('/create', [ProductController::class,'create']);
     Route::put('/update/{id}', [ProductController::class,'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);

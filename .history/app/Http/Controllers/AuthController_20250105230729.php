@@ -55,13 +55,8 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password',
             'name' => 'required'
         ]);
-        $role = Role::where("name", "USER")->first();
-        $userData = User::create([
-            "email"=> $request->email,
-            "password"=> $request->password,
-            "name"=> $request->name,
-            "role_id" => $role->id
-            ]);
+        $role = Role::where("name", "USER");
+        $userData = User::create([$request->except('confirm_password'), "role_id" => $role->id]);
 
         return response()->json(['message' => 'Successfully logged out']);
     }

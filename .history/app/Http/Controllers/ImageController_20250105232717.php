@@ -26,6 +26,7 @@ class ImageController extends Controller
         // Lưu file vào thư mục storage/app/public/images
         // $path = $request->file('image')->store('images', 'public');
 
+
         // Lưu file vào thư mục storage/app/public/images
         $uploadedImages = [];
 

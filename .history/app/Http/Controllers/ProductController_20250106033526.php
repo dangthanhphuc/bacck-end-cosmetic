@@ -9,14 +9,15 @@ use Illuminate\Validation\Rules\Enum;
 
 class ProductController extends Controller
 {
+    //
 
     public function products() {
         $products = Product::with(['brand', 'category', 'images'])->get();
         return $products;
     }
 
-    public function searche(Request $request) {
-        $query = $request->query('query');
+    public function search(Request $request) {
+        $query = request('query');
         $products = Product::where('name', 'LIKE', '%'.$query.'%')
             ->orWhere('description', 'LIKE', '%'.$query.'%')
             ->with(['brand', 'category', 'images'])

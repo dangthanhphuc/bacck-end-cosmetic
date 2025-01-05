@@ -13,7 +13,7 @@ class Cart extends Model
     public $timestamps = false;
     public $incrementing = false;
     protected $fillable = ['user_id', 'product_id', 'quantity'];
-    protected $hidden = [''];
+    protected $hidden = ['product_id'];
     protected $primaryKey = ['user_id', 'product_id'];
     public function getKeyName()
     {

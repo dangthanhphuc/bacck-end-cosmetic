@@ -84,18 +84,16 @@ class CartController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'carts' => 'required|array|min:1',
-            'carts.*.user_id' => 'required|exists:users,id',
-            'carts.*.product_id' => 'required|exists:products,id',
-            'carts.*.quantity' => 'required|integer|min:1',
+            'carts' => 'required|array|min:1'
         ]);
 
         try {
             foreach ($request->carts as $cart) {
-                $cartFind = Cart::find([$cart['user_id'], $cart['product_id'] ]);
-                $cartFind->update([
-                    'quantity' => $cart['quantity']
+                $validator = $cart->validate([
+                    'quantity' => 'sometimes|required|min:1'
                 ]);
+                $cart = Cart::find([$request->user_id, $request->product_id ]);
+                $cart->update($validator);
             }
 
             return response()->json([
