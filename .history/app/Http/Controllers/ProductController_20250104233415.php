@@ -12,7 +12,7 @@ class ProductController extends Controller
     //
 
     public function products() {
-        $products = Product::with(['brand', 'category'])->get();
+        $products = Product::with(['brand', 'category'])->all();
         return $products;
     }
 

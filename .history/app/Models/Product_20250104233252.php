@@ -22,11 +22,6 @@ class Product extends Model
         'brand_id',
         'category_id',
     ];
-
-    protected $hidden = [
-        'brand_id',
-        'category_id'
-    ];
     
     public function category() {
         return $this->belongsTo(Category::class);
@@ -34,9 +29,5 @@ class Product extends Model
 
     public function brand() {
         return $this->belongsTo(Brand::class);
-    }
-
-    public function images() {
-        return $this->hasMany(Image::class);
     }
 }

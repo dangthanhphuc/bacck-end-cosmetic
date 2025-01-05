@@ -11,16 +11,11 @@ class ImageController extends Controller
 {
     public function store(Request $request)
     {
-        // Kiểm tra xem có file được gửi lên không
-        if (!$request->hasFile('images')) {
-            return response()->json(['error' => 'No image file uploaded'], 400);
-        }
-
-        // Validate input
+        dd($request->all());
+        // Validate input để đảm bảo nhận đúng file
         $request->validate([
             'product_id' => 'required|exists:products,id',
-            'images' => 'required|array',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:20480',
+            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Lưu file vào thư mục storage/app/public/images
@@ -58,7 +53,7 @@ class ImageController extends Controller
     public function show($filename)
     {
         // Trả về file hình ảnh theo tên
-        $path = storage_path('app/public/' . $filename);
+        $path = storage_path('app/public/images/' . $filename);
 
         if (!file_exists($path)) {
             return response()->json(['message' => 'File not found'], 404);

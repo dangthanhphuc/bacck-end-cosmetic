@@ -32,16 +32,16 @@ class ImageController extends Controller
 
         try {
             DB::beginTransaction();
-            // Lặp qua mảng các ảnh và lưu từng ảnh
-            foreach ($request->file('images') as $image) {
-                $path = $image->store('images', 'public');
-                $uploadedImages[] = asset('storage/' . $path);
-                $image = Image::create([
-                    'product_id' => $request->product_id,
-                    'url' => $path
-                ]);
-            }
-            DB::commit();
+            // // Lặp qua mảng các ảnh và lưu từng ảnh
+            // foreach ($data['images'] as $image) {
+            //     $path = $image->store('images', 'public');
+            //     $uploadedImages[] = asset('storage/' . $path);
+            //     $image = Image::create([
+            //         'product_id' => $request->product_id,
+            //         'url' => $path
+            //     ]);
+            // }
+            // DB::commit();
             // Trả về response chứa đường dẫn của tất cả các ảnh
             return response()->json([
                 'message' => 'Images uploaded successfully!',
@@ -58,7 +58,7 @@ class ImageController extends Controller
     public function show($filename)
     {
         // Trả về file hình ảnh theo tên
-        $path = storage_path('app/public/' . $filename);
+        $path = storage_path('app/public/images/' . $filename);
 
         if (!file_exists($path)) {
             return response()->json(['message' => 'File not found'], 404);

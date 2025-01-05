@@ -95,9 +95,9 @@ Route::group([
 ], function($router) {
    Route::get('', [UserController::class,'info']);
    Route::put('/update', [UserController::class,'update']);
+   Route::post('/upload-image', [ImageController::class, 'storeForUser']);
 });
 
-Route::post('/upload-image', [ImageController::class, 'store']);
 Route::get('/images/{filename}', [ImageController::class, 'show']);
 
 Route::group([
