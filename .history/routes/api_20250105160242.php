@@ -72,7 +72,7 @@ Route::group([
     'middleware' => ['api', 'role:user'],
     'prefix' => 'cart'
 ], function($router) {
-    Route::get('', [CartController::class,'show']);
+    Route::get('{userId}', [CartController::class,'show']);
     Route::post('/create', [CartController::class,'store']);
     Route::put('/update', [CartController::class,'update']);
     Route::delete('/delete', [CartController::class,'destroy']);
@@ -105,7 +105,7 @@ Route::group([
     'prefix' => 'products'
 ], function($router) {
     Route::get('/', [ProductController::class, 'products'])->withoutMiddleware('role:admin');
-    Route::get('/{id}', [ProductController::class,'productById'])->withoutMiddleware('role:admin');
+   Route::get('/{id}', [ProductController::class,'productById'])->withoutMiddleware('role:admin');;
     Route::post('/create', [ProductController::class,'create']);
     Route::put('/update/{id}', [ProductController::class,'update']);
     Route::delete('/delete/{id}', [ProductController::class, 'delete']);

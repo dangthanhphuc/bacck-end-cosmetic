@@ -16,13 +16,6 @@ class ProductController extends Controller
         return $products;
     }
 
-    public function productById($id) {
-        $product = Product::with(['brand', 'category', 'images'])
-            ->findOrFail($id);
-        return $product;
-    }
-
-
     public function create(Request $request) {
         $validator = $request->validate([
             'name' => 'required',

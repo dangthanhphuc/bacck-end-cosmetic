@@ -29,7 +29,7 @@ class Cart extends Model
      // Định nghĩa mối quan hệ với Product
     public function product()
     {
-         return $this->belongsTo(Product::class)->with('images');
+         return $this->belongsTo(Product::class);
     }
     
 }

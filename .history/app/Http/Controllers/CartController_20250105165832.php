@@ -36,17 +36,7 @@ class CartController extends Controller
 
         
         try {
-            $cart = Cart::find([$validator['user_id'], $validator['product_id']]);
-            
-            if(empty($cart)) {
-                $cart = Cart::create(  $validator);
-            } else {
-                $cart->quantity += $validator['quantity'];
-                $cart->update([
-                    'user_id' => $validator['user_id'], 
-                    'product_id' => $validator['product_id']
-                ]);
-            }
+            $cart = Cart::create( $validator);
             
             return response()->json([
                 'message' => 'Cart created successfully',

@@ -34,19 +34,8 @@ class CartController extends Controller
             'quantity' => 'required|min:1'
         ]);
 
-        
         try {
-            $cart = Cart::find([$validator['user_id'], $validator['product_id']]);
-            
-            if(empty($cart)) {
-                $cart = Cart::create(  $validator);
-            } else {
-                $cart->quantity += $validator['quantity'];
-                $cart->update([
-                    'user_id' => $validator['user_id'], 
-                    'product_id' => $validator['product_id']
-                ]);
-            }
+            $cart = Cart::create( $validator);
             
             return response()->json([
                 'message' => 'Cart created successfully',
@@ -63,9 +52,8 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show($userId)
     {
-        $userId = auth()->user()->id;
         $cart = Cart::with(['product'])->where('user_id', $userId)->get();
         return $cart;
     }

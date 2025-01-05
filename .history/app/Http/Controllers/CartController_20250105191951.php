@@ -42,10 +42,7 @@ class CartController extends Controller
                 $cart = Cart::create(  $validator);
             } else {
                 $cart->quantity += $validator['quantity'];
-                $cart->update([
-                    'user_id' => $validator['user_id'], 
-                    'product_id' => $validator['product_id']
-                ]);
+                $cart->update($validator);
             }
             
             return response()->json([
